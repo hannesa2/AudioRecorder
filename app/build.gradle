@@ -19,10 +19,6 @@ android {
 		versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 	}
 
-//	def keystorePropertiesFile = rootProject.file("keystore.properties")
-//	def keystoreProperties = new Properties()
-//	keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
 	signingConfigs {
 		dev {
 			storeFile file('key/debug/debug.keystore')
@@ -30,12 +26,6 @@ android {
 			keyAlias 'androiddebugkey'
 			keyPassword 'android'
 		}
-//		release {
-//			storeFile file(keystoreProperties['prodStoreFile'])
-//			storePassword keystoreProperties['prodStorePassword']
-//			keyAlias keystoreProperties['prodKeyAlias']
-//			keyPassword keystoreProperties['prodKeyPassword']
-//		}
 	}
 
 	buildTypes {
@@ -43,9 +33,6 @@ android {
 			minifyEnabled true
 			shrinkResources true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//			firebaseCrashlytics {
-//				mappingFileUploadEnabled true
-//			}
 		}
 		debug {
 			minifyEnabled false
@@ -104,11 +91,4 @@ dependencies {
 	implementation "androidx.recyclerview:recyclerview:$androidX"
 
 	implementation "androidx.viewpager2:viewpager2:1.0.0"
-
-//	// Import the BoM for the Firebase platform
-//	implementation platform('com.google.firebase:firebase-bom:26.1.0')
-//	// Declare the dependencies for the Crashlytics and Analytics libraries
-//	// When using the BoM, you don't specify versions in Firebase library dependencies
-//	implementation 'com.google.firebase:firebase-crashlytics'
-//	implementation 'com.google.firebase:firebase-analytics'
 }
