@@ -18,10 +18,6 @@ android {
 		versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 	}
 
-//	def keystorePropertiesFile = rootProject.file("keystore.properties")
-//	def keystoreProperties = new Properties()
-//	keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
 	signingConfigs {
 		dev {
 			storeFile file('key/debug/debug.keystore')
@@ -29,12 +25,6 @@ android {
 			keyAlias 'androiddebugkey'
 			keyPassword 'android'
 		}
-//		release {
-//			storeFile file(keystoreProperties['prodStoreFile'])
-//			storePassword keystoreProperties['prodStorePassword']
-//			keyAlias keystoreProperties['prodKeyAlias']
-//			keyPassword keystoreProperties['prodKeyPassword']
-//		}
 	}
 
 	buildTypes {
@@ -42,9 +32,6 @@ android {
 			minifyEnabled true
 			shrinkResources true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//			firebaseCrashlytics {
-//				mappingFileUploadEnabled true
-//			}
 		}
 		debug {
 			minifyEnabled false
@@ -107,8 +94,4 @@ dependencies {
 	implementation "androidx.recyclerview:recyclerview:$versions.androidX"
 
 	implementation "androidx.viewpager2:viewpager2:1.0.0"
-
-//	implementation('com.crashlytics.sdk.android:crashlytics:2.9.8@aar') {
-//		transitive = true
-//	}
 }
