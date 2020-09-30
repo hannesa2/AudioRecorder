@@ -19,10 +19,19 @@ buildscript {
     }
 }
 
+
+ext.versions = [
+        // Android
+        targetSdkVersion: 28,
+        minSdkVersion   : 21,
+        androidX        : "1.1.0",
+]
+
 allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 

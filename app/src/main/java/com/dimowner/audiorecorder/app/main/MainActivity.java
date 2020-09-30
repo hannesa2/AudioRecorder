@@ -48,6 +48,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dimowner.audiorecorder.ARApplication;
+import com.dimowner.audiorecorder.ARHandler;
 import com.dimowner.audiorecorder.AppConstants;
 import com.dimowner.audiorecorder.ColorMap;
 import com.dimowner.audiorecorder.IntArrayList;
@@ -511,7 +512,7 @@ public class MainActivity extends Activity implements MainContract.View, View.On
 			waveformView.setVisibility(View.INVISIBLE);
 		}
 		waveformView.setWaveform(waveForm);
-		waveformView.setPxPerSecond(AndroidUtils.dpToPx(ARApplication.getDpPerSecond((float)duration/1000000f)));
+		waveformView.setPxPerSecond(AndroidUtils.dpToPx(ARHandler.Companion.getDpPerSecond((float)duration/1000000f)));
 	}
 
 	@Override
