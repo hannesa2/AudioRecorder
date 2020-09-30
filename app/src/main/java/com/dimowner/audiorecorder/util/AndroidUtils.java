@@ -29,7 +29,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
 import android.view.KeyCharacterMap;
@@ -137,18 +136,16 @@ public class AndroidUtils {
     // A method to find height of the navigation bar
     public static int getNavigationBarHeight(Context context) {
         int result = 0;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            try {
-                if (hasNavBar(context)) {
-                    int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
-                    if (resourceId > 0) {
-                        result = context.getResources().getDimensionPixelSize(resourceId);
-                    }
+        try {
+            if (hasNavBar(context)) {
+                int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+                if (resourceId > 0) {
+                    result = context.getResources().getDimensionPixelSize(resourceId);
                 }
-            } catch (Resources.NotFoundException e) {
-                Timber.e(e);
-                return 0;
             }
+        } catch (Resources.NotFoundException e) {
+            Timber.e(e);
+            return 0;
         }
         return result;
     }

@@ -310,10 +310,6 @@ public class RecordsActivity extends Activity implements RecordsContract.View, V
 		});
 		recyclerView.setAdapter(adapter);
 
-//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//			// Set the padding to match the Status Bar height
-//			toolbar.setPadding(0, AndroidUtils.getStatusBarHeight(getApplicationContext()), 0, 0);
-//		}
 		presenter = ARApplication.getInjector().provideRecordsPresenter();
 
 		waveformView.setOnSeekListener(new WaveformView.OnSeekListener() {
@@ -564,11 +560,7 @@ public class RecordsActivity extends Activity implements RecordsContract.View, V
 	private void handleToolbarScroll(int dy) {
 		float inset = toolbar.getTranslationY() - dy;
 		int height;
-//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//			height = toolbar.getHeight() + AndroidUtils.getStatusBarHeight(getApplicationContext());
-//		} else {
-			height = toolbar.getHeight();
-//		}
+        height = toolbar.getHeight();
 
 		if (inset < -height) {
 			inset = -height;
