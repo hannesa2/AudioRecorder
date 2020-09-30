@@ -1,13 +1,4 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'io.fabric'
-
-ext.versions = [
-		// Android
-		targetSdkVersion: 28,
-		minSdkVersion   : 21,
-		androidX        : "1.1.0",
-		timber          : "4.7.1",
-]
 
 def versionMajor = 0
 def versionMinor = 9
@@ -89,8 +80,8 @@ android.variantFilter { variant ->
 }
 
 dependencies {
-	implementation "com.jakewharton.timber:timber:$versions.timber"
 	implementation "androidx.recyclerview:recyclerview:$versions.androidX"
 
 	implementation "androidx.viewpager2:viewpager2:1.0.0"
+	implementation project(':recorderLib')
 }

@@ -21,16 +21,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Handler;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
-//import com.crashlytics.android.Crashlytics;
 import com.dimowner.audiorecorder.audio.player.PlayerContract;
 import com.dimowner.audiorecorder.data.Prefs;
-import com.dimowner.audiorecorder.util.AndroidUtils;
-//import io.fabric.sdk.android.Fabric;
 
+import info.hannes.timber.DebugTree;
 import timber.log.Timber;
 
 public class ARApplication extends Application {
@@ -39,10 +36,6 @@ public class ARApplication extends Application {
 	private AudioOutputChangeReceiver audioOutputChangeReceiver;
 
 	private static String PACKAGE_NAME ;
-	public static volatile Handler applicationHandler;
-
-	/** Screen width in dp */
-	private static float screenWidthDp = 0;
 
 	public static Injector injector;
 
@@ -54,41 +47,18 @@ public class ARApplication extends Application {
 		return PACKAGE_NAME;
 	}
 
-	/**
-	 * Calculate density pixels per second for record duration.
-	 * Used for visualisation waveform in view.
-	 * @param durationSec record duration in seconds
-	 */
-	public static float getDpPerSecond(float durationSec) {
-		if (durationSec > AppConstants.LONG_RECORD_THRESHOLD_SECONDS) {
-			return AppConstants.WAVEFORM_WIDTH * screenWidthDp / durationSec;
-		} else {
-			return AppConstants.SHORT_RECORD_DP_PER_SECOND;
-		}
-	}
-
-	public static int getLongWaveformSampleCount() {
-		return (int)(AppConstants.WAVEFORM_WIDTH * screenWidthDp);
-	}
-
 	@Override
 	public void onCreate() {
 		if (BuildConfig.DEBUG) {
 			//Timber initialization
-			Timber.plant(new Timber.DebugTree() {
-				@Override
-				protected String createStackElementTag(StackTraceElement element) {
-					return "AR-AR " + super.createStackElementTag(element) + ":" + element.getLineNumber();
-				}
-			});
+			Timber.plant(new DebugTree());
 		}
 
 		super.onCreate();
-//		Fabric.with(this, new Crashlytics());
+
+		ARHandler.Companion.init(getApplicationContext(), BuildConfig.DEBUG);
 
 		PACKAGE_NAME = getApplicationContext().getPackageName();
-		applicationHandler = new Handler(getApplicationContext().getMainLooper());
-		screenWidthDp = AndroidUtils.pxToDp(AndroidUtils.getScreenWidth(getApplicationContext()));
 		injector = new Injector(getApplicationContext());
 		Prefs prefs = injector.providePrefs();
 		if (!prefs.isMigratedSettings()) {

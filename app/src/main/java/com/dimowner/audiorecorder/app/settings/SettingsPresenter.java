@@ -28,6 +28,7 @@ import com.dimowner.audiorecorder.data.database.LocalRepository;
 import com.dimowner.audiorecorder.data.database.Record;
 import com.dimowner.audiorecorder.exception.AppException;
 import com.dimowner.audiorecorder.util.AndroidUtils;
+import com.dimowner.audiorecorder.util.CommonAndroidUtils;
 import com.dimowner.audiorecorder.util.FileUtil;
 import com.dimowner.audiorecorder.util.TimeUtils;
 
@@ -76,7 +77,7 @@ public class SettingsPresenter implements SettingsContract.UserActionsListener {
 					totalDuration += durations.get(i);
 				}
 				final long finalTotalDuration = totalDuration;
-				AndroidUtils.runOnUIThread(new Runnable() {
+				CommonAndroidUtils.runOnUIThread(new Runnable() {
 					@Override public void run() {
 						if (view != null) {
 							view.showTotalRecordsDuration(TimeUtils.formatTimeIntervalHourMinSec(finalTotalDuration / 1000));
@@ -181,7 +182,7 @@ public class SettingsPresenter implements SettingsContract.UserActionsListener {
 //				boolean b2 = localRepository.deleteAllRecords();
 //				prefs.setActiveRecord(-1);
 //				if (b2) {
-//					AndroidUtils.runOnUIThread(new Runnable() {
+//					CommonAndroidUtils.runOnUIThread(new Runnable() {
 //						@Override
 //						public void run() {
 //							if (view != null) {
@@ -189,7 +190,7 @@ public class SettingsPresenter implements SettingsContract.UserActionsListener {
 //							}
 //						}});
 //				} else {
-//					AndroidUtils.runOnUIThread(new Runnable() {
+//					CommonAndroidUtils.runOnUIThread(new Runnable() {
 //						@Override
 //						public void run() {
 //							if (view != null) {

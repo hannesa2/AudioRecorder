@@ -50,6 +50,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dimowner.audiorecorder.ARApplication;
+import com.dimowner.audiorecorder.ARHandler;
 import com.dimowner.audiorecorder.AppConstants;
 import com.dimowner.audiorecorder.ColorMap;
 import com.dimowner.audiorecorder.Mapper;
@@ -633,7 +634,7 @@ public class RecordsActivity extends Activity implements RecordsContract.View, V
 	@Override
 	public void showWaveForm(int[] waveForm, long duration) {
 		waveformView.setWaveform(waveForm);
-		waveformView.setPxPerSecond(AndroidUtils.dpToPx(ARApplication.getDpPerSecond((float)duration/1000000f)));
+		waveformView.setPxPerSecond(AndroidUtils.dpToPx(ARHandler.Companion.getDpPerSecond((float)duration/1000000f)));
 	}
 
 	@Override
