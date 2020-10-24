@@ -50,6 +50,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dimowner.audiorecorder.ARApplication;
+import com.dimowner.audiorecorder.ARHandler;
 import com.dimowner.audiorecorder.AppConstants;
 import com.dimowner.audiorecorder.ColorMap;
 import com.dimowner.audiorecorder.Mapper;
@@ -309,10 +310,6 @@ public class RecordsActivity extends Activity implements RecordsContract.View, V
 		});
 		recyclerView.setAdapter(adapter);
 
-//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//			// Set the padding to match the Status Bar height
-//			toolbar.setPadding(0, AndroidUtils.getStatusBarHeight(getApplicationContext()), 0, 0);
-//		}
 		presenter = ARApplication.getInjector().provideRecordsPresenter();
 
 		waveformView.setOnSeekListener(new WaveformView.OnSeekListener() {
@@ -563,11 +560,7 @@ public class RecordsActivity extends Activity implements RecordsContract.View, V
 	private void handleToolbarScroll(int dy) {
 		float inset = toolbar.getTranslationY() - dy;
 		int height;
-//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//			height = toolbar.getHeight() + AndroidUtils.getStatusBarHeight(getApplicationContext());
-//		} else {
-			height = toolbar.getHeight();
-//		}
+        height = toolbar.getHeight();
 
 		if (inset < -height) {
 			inset = -height;
@@ -633,7 +626,7 @@ public class RecordsActivity extends Activity implements RecordsContract.View, V
 	@Override
 	public void showWaveForm(int[] waveForm, long duration) {
 		waveformView.setWaveform(waveForm);
-		waveformView.setPxPerSecond(AndroidUtils.dpToPx(ARApplication.getDpPerSecond((float)duration/1000000f)));
+		waveformView.setPxPerSecond(AndroidUtils.dpToPx(ARHandler.Companion.getDpPerSecond((float)duration/1000000f)));
 	}
 
 	@Override

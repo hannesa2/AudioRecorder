@@ -32,6 +32,7 @@ import android.widget.TextView;
 
 import com.dimowner.audiorecorder.R;
 import com.dimowner.audiorecorder.util.AndroidUtils;
+import com.dimowner.audiorecorder.util.CommonAndroidUtils;
 import com.dimowner.audiorecorder.util.RippleUtils;
 
 import java.util.ArrayList;
@@ -257,7 +258,7 @@ public class ChipsView extends FrameLayout {
 		clearChips();
 		if (names != null) {
 			if (WIDTH <= 1) {
-				WIDTH = AndroidUtils.getScreenWidth(getContext()) - getPaddingStart() - getPaddingEnd();
+				WIDTH = CommonAndroidUtils.getScreenWidth(getContext()) - getPaddingStart() - getPaddingEnd();
 			}
 			if (names.length >= 1) {
 				for (int i = 0; i < names.length; i++) {

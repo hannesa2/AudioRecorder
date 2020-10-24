@@ -27,6 +27,7 @@ import com.dimowner.audiorecorder.data.database.Record;
 import com.dimowner.audiorecorder.exception.ErrorParser;
 import com.dimowner.audiorecorder.exception.FailedToRestoreRecord;
 import com.dimowner.audiorecorder.util.AndroidUtils;
+import com.dimowner.audiorecorder.util.CommonAndroidUtils;
 
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class TrashPresenter implements TrashContract.UserActionsListener {
 		loadingTasks.postRunnable(new Runnable() {
 			@Override public void run() {
 				final List<RecordItem> list = Mapper.toRecordItemList(localRepository.getTrashRecords());
-				AndroidUtils.runOnUIThread(new Runnable() {
+				CommonAndroidUtils.runOnUIThread(new Runnable() {
 					@Override
 					public void run() {
 						if (view != null) {
@@ -101,7 +102,7 @@ public class TrashPresenter implements TrashContract.UserActionsListener {
 				} else if (fileRepository.deleteRecordFile(path)) { //Try to delete again.
 					removeFromTrash(id);
 				} else {
-					AndroidUtils.runOnUIThread(new Runnable() {
+					CommonAndroidUtils.runOnUIThread(new Runnable() {
 						@Override
 						public void run() {
 							if (view != null) {
@@ -116,7 +117,7 @@ public class TrashPresenter implements TrashContract.UserActionsListener {
 
 	private void removeFromTrash(final int id) {
 		localRepository.removeFromTrash(id);
-		AndroidUtils.runOnUIThread(new Runnable() {
+		CommonAndroidUtils.runOnUIThread(new Runnable() {
 			@Override
 			public void run() {
 				if (view != null) {
@@ -137,7 +138,7 @@ public class TrashPresenter implements TrashContract.UserActionsListener {
 					fileRepository.deleteRecordFile(records.get(i).getPath());
 				}
 				localRepository.emptyTrash();
-				AndroidUtils.runOnUIThread(new Runnable() {
+				CommonAndroidUtils.runOnUIThread(new Runnable() {
 					@Override
 					public void run() {
 						if (view != null) {
@@ -158,7 +159,7 @@ public class TrashPresenter implements TrashContract.UserActionsListener {
 				try {
 					localRepository.restoreFromTrash(id);
 				} catch (final FailedToRestoreRecord e) {
-					AndroidUtils.runOnUIThread(new Runnable() {
+					CommonAndroidUtils.runOnUIThread(new Runnable() {
 						@Override
 						public void run() {
 							if (view != null) {
@@ -167,7 +168,7 @@ public class TrashPresenter implements TrashContract.UserActionsListener {
 						}
 					});
 				}
-				AndroidUtils.runOnUIThread(new Runnable() {
+				CommonAndroidUtils.runOnUIThread(new Runnable() {
 					@Override
 					public void run() {
 						if (view != null) {

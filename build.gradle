@@ -1,19 +1,30 @@
 buildscript {
-    
+    ext.kotlin_version = '1.4.10'
+
     repositories {
         google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
+
+
+ext.versions = [
+        // Android
+        targetSdkVersion: 28,
+        minSdkVersion   : 21,
+        androidX        : "1.1.0",
+]
 
 allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
