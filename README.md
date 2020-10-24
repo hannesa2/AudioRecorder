@@ -1,12 +1,9 @@
-
-![Audio Recorder Logo](https://github.com/Dimowner/AudioRecorder/blob/master/app/src/releaseConfig/res/mipmap-xxxhdpi/audio_recorder_logo.png)
+[![](https://jitpack.io/v/hannesa2/AudioRecorder.svg)](https://jitpack.io/#hannesa2/AudioRecorder)
 
 # Audio Recorder
 
 <p><b>Audio recorder (Voice recorder, Sound recorder)</b> - an application that gives easy audio recording experience. 
 This app is optimized to start up as fast as possible, aiding the user in not missing important sounds.</p>
-
-<a href='https://play.google.com/store/apps/details?id=com.dimowner.audiorecorder' target='_blank'><img height='80' style='border:0px;height:80px;' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' border='0' alt='GooglePlay Link' /></a>
 
 <b>Two recording formats are available:</b>
  - M4A
@@ -34,8 +31,6 @@ Colorful themes allow customizing the app look, making the experience better.
 ### License
 
 ```
-Copyright 2019 Dmitriy Ponomarenko
-
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements. See the NOTICE file distributed with this work for
 additional information regarding copyright ownership. The ASF licenses this
