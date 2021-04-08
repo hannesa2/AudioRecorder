@@ -1,6 +1,6 @@
 buildscript {
     ext.versions = [
-          androidX        : "1.1.0",
+          androidX        : "1.2.0",
 
           kotlin          : "1.4.30",
           coroutines      : "1.4.1-native-mt",
