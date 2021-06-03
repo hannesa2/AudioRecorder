@@ -90,7 +90,7 @@ dependencies {
 
 	//Timber
 	implementation "com.jakewharton.timber:timber:$versions.timber"
-	implementation "androidx.recyclerview:recyclerview:1.2.0"
+	implementation "androidx.recyclerview:recyclerview:1.2.1"
 
 	implementation "androidx.viewpager2:viewpager2:1.0.0"
 	implementation project(':recorderLib')
