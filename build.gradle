@@ -15,7 +15,7 @@ buildscript {
 
 ext.versions = [
         // Android
-        targetSdkVersion: 28,
+        targetSdkVersion: 31,
         minSdkVersion   : 21,
         androidX        : "1.1.0",
 ]

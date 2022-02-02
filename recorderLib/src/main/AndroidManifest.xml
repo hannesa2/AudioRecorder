@@ -1,5 +1,3 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="nativ.hannes.info.recorderlib">
+<manifest package="nativ.hannes.info.recorderlib">
 
-    /
 </manifest>
