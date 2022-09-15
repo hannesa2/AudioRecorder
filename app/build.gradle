@@ -10,12 +10,16 @@ def versionMinor = 9
 def versionPatch = 33
 
 android {
-	compileSdkVersion 30
-	buildToolsVersion "30.0.3"
+
+    lint {
+        abortOnError false
+    }
+    compileSdkVersion 33
+
 	defaultConfig {
 		applicationId "com.dimowner.audiorecorder"
 		minSdkVersion 21
-		targetSdkVersion 30
+		targetSdkVersion 33
 //		versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
 //		versionName "${versionMajor}.${versionMinor}.${versionPatch}"
 		versionCode 933
@@ -79,9 +83,6 @@ android {
 		targetCompatibility = JavaVersion.VERSION_1_8
 	}
 
-	lintOptions {
-		abortOnError false
-	}
 }
 
 // Remove not needed buildVariants.

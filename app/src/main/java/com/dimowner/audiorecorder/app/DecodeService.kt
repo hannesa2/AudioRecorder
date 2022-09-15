@@ -44,6 +44,12 @@ import timber.log.Timber
  */
 class DecodeService : Service() {
 
+	private val pendingIntentFlags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+		PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+	} else {
+		PendingIntent.FLAG_UPDATE_CURRENT
+	}
+
 	companion object {
 		private const val CHANNEL_NAME = "Default"
 		private const val CHANNEL_ID = "com.dimowner.audiorecorder.Decode.Notification"
@@ -201,7 +207,7 @@ class DecodeService : Service() {
 		// Create notification default intent.
 		val intent = Intent(applicationContext, MainActivity::class.java)
 		intent.flags = Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP
-		contentPendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0)
+		contentPendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, pendingIntentFlags)
 		startForeground(NOTIF_ID, buildNotification())
 	}
 
@@ -234,7 +240,7 @@ class DecodeService : Service() {
 	private fun getCancelDecodePendingIntent(context: Context): PendingIntent {
 		val intent = Intent(context, StopDecodeReceiver::class.java)
 		intent.action = ACTION_CANCEL_DECODE
-		return PendingIntent.getBroadcast(context, 15, intent, 0)
+		return PendingIntent.getBroadcast(context, 15, intent, pendingIntentFlags)
 	}
 
 	@RequiresApi(Build.VERSION_CODES.O)

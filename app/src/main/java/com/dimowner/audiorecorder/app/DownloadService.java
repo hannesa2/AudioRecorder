@@ -71,8 +71,14 @@ public class DownloadService extends Service {
 	private BackgroundQueue copyTasks;
 	private ColorMap colorMap;
 	private boolean isCancel = false;
+	private final int pendingIntentFlags;
 
 	public DownloadService() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			pendingIntentFlags = PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
+		} else {
+			pendingIntentFlags = PendingIntent.FLAG_UPDATE_CURRENT;
+		}
 	}
 
 	public static void startNotification(Context context, String downloadInfo) {
@@ -205,7 +211,7 @@ public class DownloadService extends Service {
 		// Create notification default intent.
 		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
-		contentPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+		contentPendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, pendingIntentFlags);
 		startForeground(NOTIF_ID, buildNotification());
 	}
 
@@ -239,7 +245,7 @@ public class DownloadService extends Service {
 	protected PendingIntent getPendingSelfIntent(Context context, String action) {
 		Intent intent = new Intent(context, StopDownloadReceiver.class);
 		intent.setAction(action);
-		return PendingIntent.getBroadcast(context, 10, intent, 0);
+		return PendingIntent.getBroadcast(context, 10, intent, pendingIntentFlags);
 	}
 
 	@RequiresApi(Build.VERSION_CODES.O)

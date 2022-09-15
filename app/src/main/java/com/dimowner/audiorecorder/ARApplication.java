@@ -25,6 +25,8 @@ import android.os.Handler;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
+import androidx.annotation.NonNull;
+
 import com.dimowner.audiorecorder.audio.player.PlayerContractNew;
 import com.dimowner.audiorecorder.data.Prefs;
 import com.dimowner.audiorecorder.util.AndroidUtils;
@@ -76,7 +78,7 @@ public class ARApplication extends Application {
 			//Timber initialization
 			Timber.plant(new Timber.DebugTree() {
 				@Override
-				protected String createStackElementTag(StackTraceElement element) {
+				protected String createStackElementTag(@NonNull StackTraceElement element) {
 					return "AR-AR " + super.createStackElementTag(element) + ":" + element.getLineNumber();
 				}
 			});
@@ -97,12 +99,12 @@ public class ARApplication extends Application {
 		audioOutputChangeReceiver = new AudioOutputChangeReceiver();
 		registerReceiver(audioOutputChangeReceiver, intentFilter);
 
-		try {
-			TelephonyManager mTelephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-			mTelephonyMgr.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
-		} catch (Exception e) {
-			Timber.e(e);
-		}
+//		try {
+//			TelephonyManager mTelephonyMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+//			mTelephonyMgr.listen(mPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+//		} catch (Exception e) {
+//			Timber.e(e);
+//		}
 //		FirebaseApp.initializeApp(this);
 	}
 

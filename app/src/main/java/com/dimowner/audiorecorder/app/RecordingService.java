@@ -89,8 +89,14 @@ public class RecordingService extends Service {
 	private ColorMap colorMap;
 	private boolean started = false;
 	private FileRepository fileRepository;
+	private final int pendingIntentFlags;
 
 	public RecordingService() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			pendingIntentFlags = PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
+		} else {
+			pendingIntentFlags = PendingIntent.FLAG_UPDATE_CURRENT;
+		}
 	}
 
 	@Override
@@ -270,7 +276,7 @@ public class RecordingService extends Service {
 		// Create notification default intent.
 		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
-		return PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+		return PendingIntent.getActivity(getApplicationContext(), 0, intent, pendingIntentFlags);
 	}
 
 	private void stopForegroundService() {
@@ -283,7 +289,7 @@ public class RecordingService extends Service {
 	protected PendingIntent getPendingSelfIntent(Context context, String action) {
 		Intent intent = new Intent(context, StopRecordingReceiver.class);
 		intent.setAction(action);
-		return PendingIntent.getBroadcast(context, 10, intent, 0);
+		return PendingIntent.getBroadcast(context, 10, intent, pendingIntentFlags);
 	}
 
 	@RequiresApi(Build.VERSION_CODES.O)

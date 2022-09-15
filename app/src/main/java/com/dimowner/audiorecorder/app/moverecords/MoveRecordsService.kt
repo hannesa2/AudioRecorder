@@ -36,6 +36,12 @@ import java.util.ArrayList
  */
 class MoveRecordsService : Service() {
 
+	private val pendingIntentFlags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+		PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+	} else {
+		PendingIntent.FLAG_UPDATE_CURRENT
+	}
+
 	companion object {
 		private const val CHANNEL_NAME = "MoveRecords"
 		private const val CHANNEL_ID = "com.dimowner.audiorecorder.MoveRecords.Notification"
@@ -230,7 +236,7 @@ class MoveRecordsService : Service() {
 		// Create notification default intent.
 		val intent = Intent(applicationContext, MainActivity::class.java)
 		intent.flags = Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP
-		val pendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0)
+		val pendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, pendingIntentFlags)
 
 		// Create notification builder.
 		builder = NotificationCompat.Builder(this, CHANNEL_ID)
@@ -260,7 +266,7 @@ class MoveRecordsService : Service() {
 	private fun getCancelMovePendingIntent(context: Context): PendingIntent {
 		val intent = Intent(context, StopMoveRecordsReceiver::class.java)
 		intent.action = ACTION_CANCEL_MOVE_RECORDS
-		return PendingIntent.getBroadcast(context, 318, intent, 0)
+		return PendingIntent.getBroadcast(context, 318, intent, pendingIntentFlags)
 	}
 
 	@RequiresApi(Build.VERSION_CODES.O)

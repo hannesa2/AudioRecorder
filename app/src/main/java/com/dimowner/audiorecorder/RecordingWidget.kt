@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.os.Build
 import android.widget.RemoteViews
 import com.dimowner.audiorecorder.app.TransparentRecordingActivity
 
@@ -45,7 +46,12 @@ internal fun updateAppWidget(
 
 private fun getRecordingPendingIntent(context: Context): PendingIntent {
 	val intent = Intent(context, WidgetReceiver::class.java)
-	return PendingIntent.getBroadcast(context, 11, intent, 0)
+	val pendingIntentFlags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+		PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+	} else {
+		PendingIntent.FLAG_UPDATE_CURRENT
+	}
+	return PendingIntent.getBroadcast(context, 11, intent, pendingIntentFlags)
 }
 
 class WidgetReceiver : BroadcastReceiver() {
