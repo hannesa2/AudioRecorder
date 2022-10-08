@@ -31,6 +31,13 @@
         </receiver>
 
         <activity
+            android:name=".app.main.MainActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+        </activity>
+        <activity
             android:name=".app.records.RecordsActivity" />
         <activity
             android:name=".app.settings.SettingsActivity" />
