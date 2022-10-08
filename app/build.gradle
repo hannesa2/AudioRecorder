@@ -32,7 +32,7 @@ android {
 
 dependencies {
 	def androidX = "1.2.1"
-	def coroutines = "1.4.1"
+	def coroutines = "1.6.4"
 	def timber = "5.0.1"
 
 	//Kotlin
