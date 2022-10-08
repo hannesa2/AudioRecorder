@@ -5,13 +5,6 @@
 <p><b>Audio recorder (Voice recorder, Sound recorder)</b> - an application that gives easy audio recording experience. 
 This app is optimized to start up as fast as possible, aiding the user in not missing important sounds.</p>
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-     alt="Get it on F-Droid"
-     height="80">](https://f-droid.org/packages/com.dimowner.audiorecorder/)
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"
-     alt="Get it on Google Play"
-     height="80">](https://play.google.com/store/apps/details?id=com.dimowner.audiorecorder)
-
 <b>Two recording formats are available:</b>
  - M4A
  - Waveform Audio File Format (WAVE, or WAV)
@@ -35,11 +28,13 @@ Colorful themes allow customizing the app look, making the experience better.
 - Add recordings to bookmarks
 - Color themes
 
+## Integrate as library
+
+https://jitpack.io/#hannesa2/AudioRecorder
+
 ### License
 
 ```
-Copyright 2019 Dmytro Ponomarenko
-
 Licensed to the Apache Software Foundation (ASF) under one or more contributor
 license agreements. See the NOTICE file distributed with this work for
 additional information regarding copyright ownership. The ASF licenses this
