@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'maven-publish'
 
 android {
 
@@ -44,4 +45,20 @@ dependencies {
 	implementation "androidx.recyclerview:recyclerview:$androidX"
 
 	implementation "androidx.viewpager2:viewpager2:1.0.0"
+}
+
+task androidSourcesJar(type: Jar) {
+	classifier 'sources'
+	from android.sourceSets.main.java.srcDirs
+}
+
+project.afterEvaluate {
+	publishing {
+		publications {
+			release(MavenPublication) {
+				from components.release
+				artifact androidSourcesJar
+			}
+		}
+	}
 }
