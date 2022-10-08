@@ -1,10 +1,9 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-
 	namespace 'com.dimowner.audiorecorder'
 	lint {
         abortOnError false
@@ -12,8 +11,11 @@ android {
     compileSdkVersion 33
 
 	defaultConfig {
+		applicationId "com.dimowner.audiorecorder"
 		minSdkVersion 21
 		targetSdkVersion 33
+		versionCode 933
+		versionName "0.9.33"
 	}
 
 	buildFeatures {
@@ -22,14 +24,18 @@ android {
 
 	buildTypes {
 		release {
+			minifyEnabled true
+			shrinkResources true
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 		debug {
+			minifyEnabled false
 		}
 	}
 }
 
 dependencies {
+	implementation project(':app')
 	def androidX = "1.2.1"
 	def coroutines = "1.4.1"
 	def timber = "4.7.1"
