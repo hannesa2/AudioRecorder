@@ -38,7 +38,7 @@ dependencies {
 	implementation project(':app')
 	def androidX = "1.2.1"
 	def coroutines = "1.4.1"
-	def timber = "4.7.1"
+	def timber = "5.0.1"
 
 	//Kotlin
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
