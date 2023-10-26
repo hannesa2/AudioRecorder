@@ -4,18 +4,16 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'maven-publish'
 
 android {
-
 	namespace 'com.dimowner.audiorecorder'
-	lint {
-        abortOnError false
-    }
-    compileSdkVersion 33
 
 	defaultConfig {
 		minSdkVersion 21
-		targetSdkVersion 33
+		compileSdk 34
+		targetSdkVersion 34
 	}
-
+	lint {
+		abortOnError false
+	}
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_17
 		targetCompatibility JavaVersion.VERSION_17
